@@ -9,17 +9,13 @@
       <div class="card-body">
         <h5 class="card-title">{{ book.item.title }}</h5>
         <p class="card-text">{{ book.item.genre }}</p>
-        {% if request.user.is_authenticated %}
-        <div>
-          <a href="{% url 'add_borrowlist' book.item.id %}" type="button" class="btn btn-primary btn-sm">Request Borrow</a>
-        </div>
-        {% endif %}
+        <p class="card-text">Borrowed: {{ book.borrow_date }}</p>
       </div>
     </div>
   </div>
   {% endfor %}
 </div>
 {% else %}
-<h4 class="mt-5">You don't have any book in your wishlist, Try to add some book from <a href="{% url 'home' %}">Home Page</a></h4>
+<h4 class="mt-5">You don't have any book in your borrowlist, Borrow book from here <a href="{% url 'home' %}">Home Page</a></h4>
 {% endif %}
 {% endblock body %}

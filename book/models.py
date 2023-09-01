@@ -12,9 +12,20 @@ class Book(models.Model):
     book_no = models.IntegerField()
     is_available = models.BooleanField(default=True)
     
+    def __str__(self):
+        return self.title
+    
 class WishList(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     item = models.ForeignKey(Book, on_delete=models.CASCADE)
+    
+    def __str__(self):
+        return self.item.title
+    
+class BorrowList(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    item = models.ForeignKey(Book, on_delete=models.CASCADE)
+    borrow_date = models.DateTimeField()
     
     def __str__(self):
         return self.item.title
