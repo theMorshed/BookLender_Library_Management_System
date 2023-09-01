@@ -1,1 +1,15 @@
-all books are here
+{% extends 'base.html' %} {% block body %}
+<div class="row row-cols-1 row-cols-md-3 g-4 mt-5">
+  {% for book in books %}
+  <div class="col">
+    <div class="card">
+      <img src="{{ book.image.url }}" class="card-img-top" alt="{{ book.title }}" />
+      <div class="card-body">
+        <h5 class="card-title">{{ book.title }}</h5>
+        <p class="card-text">{{ book.genre }}</p>
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+</div>
+{% endblock body %}
