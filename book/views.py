@@ -3,6 +3,10 @@ from book.models import Book
 
 # Create your views here.
 def home(request):
-    books = Book.objects.all()
+    query = request.GET.get('search')
+    if query:
+        books = Book.objects.filter(title__icontains = query)
+    else:
+        books = Book.objects.all()
     context = {'books': books}
     return render(request, 'books.html', context)
