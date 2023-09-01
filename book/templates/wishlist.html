@@ -5,13 +5,12 @@
   {% for book in books %}
   <div class="col">
     <div class="card">
-      <img src="{{ book.image.url }}" class="card-img-top" alt="{{ book.title }}" />
+      <img src="{{ book.item.image.url }}" class="card-img-top" alt="{{ book.title }}" />
       <div class="card-body">
-        <h5 class="card-title">{{ book.title }}</h5>
-        <p class="card-text">{{ book.genre }}</p>
+        <h5 class="card-title">{{ book.item.title }}</h5>
+        <p class="card-text">{{ book.item.genre }}</p>
         {% if request.user.is_authenticated %}
         <div>
-          <a href="{% url 'add_wishlist' book.id %}" type="button" class="btn btn-primary btn-sm">Add Wishlist</a>
           <a type="button" class="btn btn-primary btn-sm">Request Borrow</a>
         </div>
         {% endif %}
@@ -21,6 +20,6 @@
   {% endfor %}
 </div>
 {% else %}
-<h4 class="mt-5">Don't find anything what you have search, please try again or go to <a href="{% url 'home' %}">Home Page</a></h4>
+<h4 class="mt-5">You don't have any book in your wishlist, Try to add some book from <a href="{% url 'home' %}">Home Page</a></h4>
 {% endif %}
 {% endblock body %}

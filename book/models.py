@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 # Create your models here.
 class Book(models.Model):
@@ -10,3 +11,10 @@ class Book(models.Model):
     genre = models.CharField(max_length=100)
     book_no = models.IntegerField()
     is_available = models.BooleanField(default=True)
+    
+class WishList(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    item = models.ForeignKey(Book, on_delete=models.CASCADE)
+    
+    def __str__(self):
+        return self.item.title
