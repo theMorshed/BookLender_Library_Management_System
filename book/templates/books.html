@@ -1,4 +1,6 @@
-{% extends 'base.html' %} {% block body %}
+{% extends 'base.html' %} 
+{% block body %}
+{% if books %}
 <div class="row row-cols-1 row-cols-md-4 g-4 mt-5">
   {% for book in books %}
   <div class="col">
@@ -12,4 +14,7 @@
   </div>
   {% endfor %}
 </div>
+{% else %}
+<h4 class="mt-5">Don't find anything what you have search, please try again or go to <a href="{% url 'home' %}">Home Page</a></h4>
+{% endif %}
 {% endblock body %}

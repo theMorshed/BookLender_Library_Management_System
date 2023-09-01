@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+{% block body %}
+    <section class="section-content padding-y">
+      <div class="mx-auto" style="margin-top: 40px">
+        <article class="card-body">
+          <header class="mb-4"><h4 class="card-title">Sign up</h4></header>
+          <form method="POST">
+            {% csrf_token %}   
+            <div class="form-group">
+              <label for="{{ form.username.id_for_label }}">Username</label>
+              <input id="{{ form.username.id_for_label }}" type="text" class="form-control" placeholder="" name="{{ form.username.html_name }}"/>
+            </div>       
+            <div class="form-row">
+              <!-- form-group end.// -->
+              <div class="col form-group">
+                <label for="{{ form.first_name.id_for_label }}">First name</label>
+                <input id="{{ form.first_name.id_for_label }}" type="text" class="form-control" placeholder="" name="{{ form.first_name.html_name }}"/>
+              </div>
+              <!-- form-group end.// -->
+              <div class="col form-group">
+                <label for="{{ form.last_name.id_for_label }}">Last name</label>
+                <input id="{{ form.last_name.id_for_label }}" type="text" class="form-control" placeholder="" name="{{ form.last_name.html_name }}"/>
+              </div>
+              <!-- form-group end.// -->
+            </div>
+            <!-- form-row end.// -->            
+            <div class="form-group">
+              <label for="{{ form.email.id_for_label }}">Email</label>
+              <input id="{{ form.email.id_for_label }}" type="text" class="form-control" placeholder="" name="{{ form.email.html_name }}"/>
+            </div>
+            <!-- form-group end.// -->
+
+            <div class="form-group">
+                <label for="{{ form.password1.id_for_label }}">Create password</label>
+                <input id="{{ form.password1.id_for_label }}" type="password" class="form-control" placeholder="" name="{{ form.password1.html_name }}"/>
+            </div>
+            <!-- form-group end.// -->
+            <div class="form-group">
+                <label for="{{ form.password2.id_for_label }}">Repeat password</label>
+                <input id="{{ form.password2.id_for_label }}" type="password" class="form-control" placeholder="" name="{{ form.password2.html_name }}"/>
+            </div>
+            <!-- form-group end.// -->
+            <div class="form-group mt-3">
+              <button type="submit" class="btn btn-primary btn-block">
+                Register
+              </button>
+            </div>
+            <!-- form-group// -->
+          </form>
+        </article>
+        <!-- card-body.// -->
+      </div>
+      <!-- card .// -->
+      <p class="mt-4">Have an account? <a href="{% url 'login' %}">Log In</a></p>
+      <br /><br />
+    </section>
+{% endblock body %}

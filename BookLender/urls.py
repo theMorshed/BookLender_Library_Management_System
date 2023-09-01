@@ -21,9 +21,10 @@ from django.conf.urls.static import static
 from book.views import home
 
 urlpatterns = [
+    path('', home),
     path('admin/', admin.site.urls),
     path('books/', include('book.urls')),
-    path('', home),
+    path('account/', include('account.urls')),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
