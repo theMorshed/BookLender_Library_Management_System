@@ -8,7 +8,7 @@
       <img src="{{ book.item.image.url }}" class="card-img-top" alt="{{ book.title }}" />
       <div class="card-body">
         <h5 class="card-title">{{ book.item.title }}</h5>
-        <p class="card-text">{{ book.item.genre }}</p>
+        <p class="card-text">Author: {{ book.item.author }}<br>ISBN: {{ book.item.isbn }}<br>Genre: {{ book.item.genre }}<br>Date Published: {{ book.item.publication_date.date }}</p>
         <p class="card-text">Borrowed: {{ book.borrow_date.date }}<br> Return Date: {{ book.return_date.date }}</p>
       </div>
     </div>
