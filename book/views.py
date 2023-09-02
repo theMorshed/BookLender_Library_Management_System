@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from book.models import Book, WishList, BorrowList
-from datetime import datetime
+from datetime import datetime, timedelta
 
 # Create your views here.
 def home(request):
@@ -17,7 +17,7 @@ def add_wishlist(request, book_id):
         return redirect('login')
     
     book = Book.objects.get(id = book_id)
-    is_exists = WishList.objects.filter(item = book)
+    is_exists = WishList.objects.filter(item = book, user = request.user)
     if not is_exists:
         item = WishList.objects.create(
             user = request.user,
@@ -39,15 +39,15 @@ def add_borrowlist(request, book_id):
         return redirect('login')
     
     book = Book.objects.get(id = book_id)
-    is_exists = BorrowList.objects.filter(item = book)
+    is_exists = BorrowList.objects.filter(item = book, user = request.user)
     if not is_exists:
         item = BorrowList.objects.create(
             user = request.user,
             item = book,
             borrow_date = datetime.now(),
+            return_date = datetime.now() + timedelta(days = 15),
         )
         item.save()
-    
     return redirect('borrowlist')
 
 def borrowlist(request):
