@@ -28,6 +28,7 @@ class BorrowList(models.Model):
     item = models.ForeignKey(Book, on_delete=models.CASCADE)
     borrow_date = models.DateTimeField()
     return_date = models.DateTimeField(default=datetime.now() + timedelta(days = 15))
+    fine = models.IntegerField(default=0)
     
     def __str__(self):
         return self.item.title
