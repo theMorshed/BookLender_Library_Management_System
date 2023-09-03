@@ -4,6 +4,11 @@
       <div class="mx-auto" style="margin-top: 40px">
         <article class="card-body">
           <header class="mb-4"><h4 class="card-title">Sign up</h4></header>
+          {% if form.errors %}
+          <div class="alert alert-danger" role="alert">
+            {{form.errors}}
+          </div>
+          {% endif %}
           <form method="POST">
             {% csrf_token %}   
             <div class="form-group">
