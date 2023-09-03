@@ -8,7 +8,7 @@
       <img src="{{ book.item.image.url }}" class="card-img-top" alt="{{ book.title }}" />
       <div class="card-body">
         <h5 class="card-title">{{ book.item.title }}</h5>
-        <p class="card-text">Author: {{ book.item.author }}<br>ISBN: {{ book.item.isbn }}<br>Genre: {{ book.item.genre }}<br>Date Published: {{ book.item.publication_date.date }}</p>
+        <p class="card-text">Author: {{ book.item.author }}<br>ISBN: {{ book.item.isbn }}<br>Genre: {{ book.item.genre }}<br>Quantity: {{ book.item.book_no }}<br>Date Published: {{ book.item.publication_date.date }}</p>
         {% if request.user.is_authenticated %}
         <div>
           <a href="{% url 'add_borrowlist' book.item.id %}" type="button" class="btn btn-primary btn-sm">Request Borrow</a>

@@ -40,13 +40,15 @@ def add_borrowlist(request, book_id):
     
     book = Book.objects.get(id = book_id)
     is_exists = BorrowList.objects.filter(item = book, user = request.user)
-    if not is_exists:
+    if not is_exists and book.book_no > 0:
         item = BorrowList.objects.create(
             user = request.user,
             item = book,
             borrow_date = datetime.now(),
             return_date = datetime.now() + timedelta(days = 15),
         )
+        book.book_no -= 1
+        book.save()
         item.save()
     return redirect('borrowlist')
 
@@ -56,3 +58,13 @@ def borrowlist(request):
     
     borrowlist = BorrowList.objects.filter(user = request.user)
     return render(request, 'borrowlist.html', {'books': borrowlist})
+
+def return_book(request, book_id):
+    if not request.user.is_authenticated:
+        return redirect('login')
+    book = Book.objects.get(id = book_id)
+    book.book_no += 1
+    book.save()
+    borrowed_book = BorrowList.objects.filter(item = book, user = request.user)
+    borrowed_book.delete()
+    return redirect('borrowlist')

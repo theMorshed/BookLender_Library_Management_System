@@ -10,6 +10,9 @@
         <h5 class="card-title">{{ book.item.title }}</h5>
         <p class="card-text">Author: {{ book.item.author }}<br>ISBN: {{ book.item.isbn }}<br>Genre: {{ book.item.genre }}<br>Date Published: {{ book.item.publication_date.date }}</p>
         <p class="card-text">Borrowed: {{ book.borrow_date.date }}<br> Return Date: {{ book.return_date.date }}</p>
+        <div>
+          <a href="{% url 'return_book' book.item.id %}" type="button" class="btn btn-primary btn-sm">Return Book</a>
+        </div>
       </div>
     </div>
   </div>
