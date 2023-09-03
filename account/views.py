@@ -8,6 +8,8 @@ def user_login(request):
         username = request.POST.get('username')
         password = request.POST.get('password')
         user = authenticate(username = username, password = password)
+        if user is None:
+            return render(request, 'login.html', {'error': 'Username and password does not match'})
         login(request, user)
         return redirect('home')
     
